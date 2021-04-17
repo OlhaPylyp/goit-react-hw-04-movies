@@ -1,33 +1,59 @@
 // // import { renderIntoDocument } from "react-dom/test-utils";
 // import { Link } from "react-router-dom";
-import { Component } from "react";
-import axios from "axios";
+import { Component, lazy, Suspense } from "react";
+import fetchMovieDetails from "../Components/ApiUtilit";
+import { Link, Route, Switch, withRouter } from "react-router-dom";
+const Cast =lazy(() =>
+  import("../Components/Cast/Cast" /* webpackChunkName: "Cast component" */)
+);
+const Reviews =lazy(() =>
+  import("../Components/Reviews/Reviews" /* webpackChunkName: "Cast component" */)
+);
+
 
 class MovieDetailsPage extends Component {
   state = {
     movie_id: "",
     original_title: "",
-    genres: "",
+    genres: [],
+    vote_average: 0,
     popularity: null,
   };
-  async componentDidMount() {
-    const { movie_id } = this.props.match.params;
-    const ApiKey = "2d2272085b6a086155bacb1413ae9080";
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${ApiKey}&language=en-US`
-    );
-    this.setState({ ...response.data });
+  componentDidMount() {
+    const { movieId } = this.props.match.params;
+    fetchMovieDetails
+      .fetchMovieDetails(movieId)
+      .then((film) => this.setState({ ...film }));
   }
-
   render() {
-    const { original_title, genres, popularity } = this.state;
+    const {id,
+      original_title,
+      genres,
+      vote_average,
+      poster_path,
+    } = this.state;
+    console.log("MovieDetPage this.props.match: ", this.props.match);
     return (
       <>
-        {/* <h1> {this.props.match.params.movie_id}</h1> */}
-        {/* <img src={imgUrl} alt="" /> */}
-        <h2>{original_title}</h2>
-        <p>Genres: {genres.name}</p>
-        <p>{popularity}</p>
+        <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" />
+        <h2 key={id}>
+          Title: <span> {original_title}</span>
+        </h2>
+        {genres.map(({name})=>{return ( <p>Genres:{name}</p>)})}
+        <p>User Score: {vote_average * 10}%</p>
+        <p>Aditional information</p>
+        <Link to={`${this.props.match.url}/cast/${this.props.match.params.movieId}`}>
+          <p>Cast</p>
+        </Link>{" "}
+        <Link to={`${this.props.match.url}/reviews/${this.props.match.params.movieId}`}>
+          <p>Reviews</p>
+        </Link>{" "}
+              <Suspense fallback={<p>Is loading....</p>}>
+          <Switch>
+            <Route path={`${this.props.match.url}/cast/:movieId`} component={Cast} />
+            <Route path={`${this.props.match.url}/reviews:movieId`} component={Reviews} />
+          </Switch>
+        </Suspense>
       </>
     );
   }

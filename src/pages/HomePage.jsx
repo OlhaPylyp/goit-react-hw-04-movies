@@ -2,7 +2,6 @@
 // import { Link } from 'react-router-dom';
 
 // import fetchPopularFilm from "../Components/ApiUtilit"
-
 import { renderIntoDocument } from "react-dom/test-utils";
 import { Link } from "react-router-dom";
 import { Component } from "react";
@@ -21,6 +20,7 @@ class HomePages extends Component {
   }
 
   render() {
+    console.log("Home this.props.match.url",this.props.match.url);
     const { films } = this.state;
     return (
       <ul>
@@ -28,12 +28,11 @@ class HomePages extends Component {
         {films.map(({ id, original_title, poster_path }) => {
           return (
             <li key={id}>
-              <Link to={`${this.props.match.url}/${id}`}>
+              {/* <Link to={`${this.props.match.url}/${id}`}>
                 {original_title}
-                <img src={poster_path} alt="" />
-              </Link>
-              {original_title}
-            </li>
+                {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" /> */}
+              {/* </Link> */} 
+             </li>
           );
         })}
       </ul>
