@@ -3,9 +3,10 @@
 
 // import fetchPopularFilm from "../Components/ApiUtilit"
 import { renderIntoDocument } from "react-dom/test-utils";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import { Component } from "react";
 import axios from "axios";
+import style from "../pages/Main.module.css"
 
 class HomePages extends Component {
   state = {
@@ -23,16 +24,16 @@ class HomePages extends Component {
     console.log("Home this.props.match.url",this.props.match.url);
     const { films } = this.state;
     return (
-      <ul>
+      <ul className ={style.filmList}>
         {" "}
-        {films.map(({ id, original_title, poster_path }) => {
+        {films.length > 0 && films.map(({ id, original_title, poster_path }) => {
           return (
-            <li key={id}>
+            <li className ={style.filmItem}  key={id}>
             
-         <Link to={`${this.props.match.url}/${id}`}>
+         <NavLink to={`${this.props.match.url}/${id}`}>
                   {original_title}
                 {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" /> */}
-              </Link> 
+              </NavLink> 
              </li>
           );
         })}

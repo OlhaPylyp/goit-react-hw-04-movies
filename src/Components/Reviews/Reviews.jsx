@@ -17,6 +17,7 @@ class Reviews extends Component {
   }
 
   render() {
+    console.log("this.state.reviews",this.state.reviews)
     const { reviews } = this.state;
     return (
       <>

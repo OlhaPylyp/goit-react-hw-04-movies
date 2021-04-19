@@ -1,13 +1,12 @@
 import { Component } from "react";
 
 import fetchCast from "../ApiUtilit";
-
+import style from "../Cast/Cast.module.css"
 class Cast extends Component {
   state = {
     castA: [],
   };
   componentDidMount() {
-    console.log("Cast componentDidMount() match: ", this.props.match);
     const { movieId } = this.props.match.params;
     fetchCast.fetchCast(movieId).then((cast) =>
       this.setState({
@@ -20,11 +19,11 @@ class Cast extends Component {
     const { castA } = this.state;
         return (
       <>
-        <ul>
+        <ul className={style.list}>
           {castA.map(({ name, id }) => {
             return (
-              <li key={id}>
-                <p>Name:{name}</p>{" "}
+              <li className={style.item} key={id}>
+                <p className={style.text}>Name: <span className={style.name}>{name}</span></p>{" "}
               </li>
             );
           })}

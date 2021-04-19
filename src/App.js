@@ -14,9 +14,9 @@ const MovieDetailsPage = lazy(() =>
 );
 const App = () => {
   return (
-    <div>
-      <ul>
-        <li>
+    <div className={styles.container}>
+      <ul className={styles.list}>
+        <li className={styles.item}>
           <NavLink
             exact
             to="/"
@@ -26,22 +26,13 @@ const App = () => {
             HomePage
           </NavLink>
         </li>
-            <li>
+        <li className={styles.item}>
           <NavLink
             to="/MoviesPage"
             className={styles.NavLink}
             activeClassName={styles.NavLinkActive}
           >
             MoviesPage
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/MoviesPage/:MovieId"
-            className={styles.NavLink}
-            activeClassName={styles.NavLinkActive}
-          >
-            MovieDetailsPage
           </NavLink>
         </li>
       </ul>

@@ -1,0 +1,13 @@
+.item {
+  list-style: none;
+}
+.text {
+  font-weight: 700;
+}
+.name {
+  font-weight: 500;
+  margin-left: 10px;
+}
+.list{
+    margin: 0;
+}

@@ -39,3 +39,19 @@
 .NavLinkActive {
   color: palevioletred;
 }
+.list {
+  display: flex;
+  list-style: none;
+}
+.item {
+  margin-left: 20px;
+}
+.container {
+  width: 1200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+}

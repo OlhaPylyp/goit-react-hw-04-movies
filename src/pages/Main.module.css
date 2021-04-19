@@ -1,0 +1,62 @@
+.filmList {
+  list-style: none;
+}
+/* .style.filmItem{
+    
+} */
+.img{
+    width: auto;
+    height: 500px;
+}
+
+.genresList {
+  display: flex;
+  font-weight: 700;
+  list-style: none;
+  margin-right: 10px;
+}
+.genresItem {
+  font-weight: 500;
+  margin-left: 10px;
+}
+.genresScore {
+  font-weight: 700;
+  margin-left: 40px;
+}
+.genresInfo {
+  font-size: 30px;
+  color: #3fb5a5;
+  font-weight: 700;
+}
+.NavLink {
+  font-size: 20px;
+  color: currentColor;
+}
+
+.NavLinkActive {
+  color: palevioletred;
+}
+.genresTitle {
+  font-size: 30px;
+  color: #3fb5a5;
+  font-weight: 700;
+}
+.genresText{
+    font-weight: 500;
+    margin-left: 10px;
+}
+.container{
+    width: 1200px;
+    align-items: center;
+    background-color: rgb(254, 254, 255);
+    display: flex;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 20%),
+      0px 2px 1px rgb(0 0 0 / 40%);
+    flex-direction: column;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+.text{
+    margin-bottom: 0;
+}

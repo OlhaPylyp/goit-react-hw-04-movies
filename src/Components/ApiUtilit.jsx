@@ -1,10 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from "axios";
 const ApiKey = "2333256e3c1fa5964d6335c1882125af";
-const fetchSearchFilm = async (query) =>
+const fetchSearchFilm = async (query, page) =>
   await axios
     .get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${query}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${ApiKey}&language=en-US&query=${query}&page=${page}`
     )
     .then((response) => response.data.results);
 const fetchMovieDetails = async (movie_id) =>
