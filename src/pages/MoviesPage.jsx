@@ -6,7 +6,7 @@ import { Component } from "react";
 import fetchSearchFilm from "../Components/ApiUtilit";
 import SearchBar from "../Components/SearchBar";
 import style from "../pages/Main.module.css";
-import MovieList from "../MovieList";
+import MovieList from "../Components/MovieList";
 class MoviesPage extends Component {
   state = {
     films: [],
@@ -41,8 +41,7 @@ class MoviesPage extends Component {
           films: [...prevState.films, ...results],
         }))
       )
-      .catch((error) => this.setState({ error }))
-      .finally(() => this.setState({ isLoading: false }));
+      .catch((error) => console.log(error));
   };
   addFilm = (film) => {
     // console.log('addImage()');
@@ -54,7 +53,6 @@ class MoviesPage extends Component {
     });
   };
   render() {
-    console.log("Movie this.props.match.url", this.props.match.url);
     const { films } = this.state;
     return (
       <div>

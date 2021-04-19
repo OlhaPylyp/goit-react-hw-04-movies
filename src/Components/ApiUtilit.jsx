@@ -19,11 +19,11 @@ const fetchMovieDetails = async (movie_id) =>
     .get(
       `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${ApiKey}&language=en-US`
     )
-    .then((response) => response.data.cast);
+    .then(({data}) => data.cast);
     const fetchReviews = async (movie_id) =>
     await axios
       .get(
         `https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${ApiKey}&language=en-US&page=1`
       )
-      .then((response) => response.data.results);
+      .then(({data}) => data.results);
 export default { fetchSearchFilm, fetchMovieDetails,fetchCast, fetchReviews };

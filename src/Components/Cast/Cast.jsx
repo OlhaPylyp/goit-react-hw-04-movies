@@ -5,10 +5,11 @@ import style from "../Cast/Cast.module.css"
 class Cast extends Component {
   state = {
     castA: [],
+    error:false,
   };
-  componentDidMount() {
+  async componentDidMount() {
     const { movieId } = this.props.match.params;
-    fetchCast.fetchCast(movieId).then((cast) =>
+    await fetchCast.fetchCast(movieId).then((cast) =>
       this.setState({
         castA: cast,
       })

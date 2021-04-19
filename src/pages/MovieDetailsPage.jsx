@@ -20,13 +20,22 @@ class MovieDetailsPage extends Component {
     genres: [],
     vote_average: 0,
     popularity: null,
+    error: false,
   };
   componentDidMount() {
     const { movieId } = this.props.match.params;
     fetchMovieDetails
       .fetchMovieDetails(movieId)
-      .then((film) => this.setState({ ...film }));
+      .then((film) => this.setState({ ...film }))
+      .catch((error) => this.state({ error }));
   }
+  handleGoBack = () => {
+    const { location, history } = this.props;
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
+    history.push("/")
+  };
   render() {
     const {
       id,
@@ -35,10 +44,17 @@ class MovieDetailsPage extends Component {
       vote_average,
       poster_path,
     } = this.state;
-    console.log("MovieDetPage this.props.match: ", this.props.match);
+
+    console.log(
+      "MovieDetPage this.props.match: ",
+      this.props.location.state.from
+    );
     return (
       <>
         <div className={style.container}>
+          <button type="button" onClick={this.handleGoBack}>
+            Back
+          </button>
           <img
             className={style.img}
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -65,7 +81,7 @@ class MovieDetailsPage extends Component {
           <NavLink
             className={style.NavLink}
             activeClassName={style.NavLinkActive}
-            to={`${this.props.match.url}/cast/${this.props.match.params.movieId}`}
+            to={`${this.props.match.url}/cast/${id}`}
           >
             <p className={style.text}>Cast</p>
           </NavLink>{" "}
@@ -74,7 +90,7 @@ class MovieDetailsPage extends Component {
             activeClassName={style.NavLinkActive}
             to={`${this.props.match.url}/reviews/${id}`}
           >
-            <p >Reviews</p>
+            <p>Reviews</p>
           </NavLink>{" "}
           <Suspense fallback={<p>Is loading....</p>}>
             <Switch>

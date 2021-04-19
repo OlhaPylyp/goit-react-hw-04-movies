@@ -1,6 +1,6 @@
 import { Link, withRouter } from "react-router-dom";
 // import PropTypes from "prop-types";
-import style from "./pages/Main.module.css"
+import style from "../pages/Main.module.css"
 
 const MoviesList = ({ films, location }) => {
   return (

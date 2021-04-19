@@ -2,8 +2,7 @@
 // import { Link } from 'react-router-dom';
 
 // import fetchPopularFilm from "../Components/ApiUtilit"
-import MovieList from "../MovieList"
-import { renderIntoDocument } from "react-dom/test-utils";
+import MovieList from "../Components/MovieList"
 import { Link,NavLink } from "react-router-dom";
 import { Component } from "react";
 import axios from "axios";
