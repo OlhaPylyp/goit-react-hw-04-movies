@@ -41,7 +41,7 @@ class MovieDetailsPage extends Component {
         <div className={style.container}>
           <img
             className={style.img}
-            src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt=""
           />
           <h2 className={style.genresTitle} key={id}>
@@ -72,7 +72,7 @@ class MovieDetailsPage extends Component {
           <NavLink
             className={style.NavLink}
             activeClassName={style.NavLinkActive}
-            to={`${this.props.match.url}/reviews/${this.props.match.params.movieId}`}
+            to={`${this.props.match.url}/reviews/${id}`}
           >
             <p >Reviews</p>
           </NavLink>{" "}
@@ -83,7 +83,7 @@ class MovieDetailsPage extends Component {
                 component={Cast}
               />
               <Route
-                path={`${this.props.match.url}/reviews:movieId`}
+                path={`${this.props.match.url}/reviews/:movieId`}
                 component={Reviews}
               />
             </Switch>

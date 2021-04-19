@@ -2,6 +2,7 @@
 // import { Link } from 'react-router-dom';
 
 // import fetchPopularFilm from "../Components/ApiUtilit"
+import MovieList from "../MovieList"
 import { renderIntoDocument } from "react-dom/test-utils";
 import { Link,NavLink } from "react-router-dom";
 import { Component } from "react";
@@ -24,20 +25,24 @@ class HomePages extends Component {
     console.log("Home this.props.match.url",this.props.match.url);
     const { films } = this.state;
     return (
-      <ul className ={style.filmList}>
-        {" "}
-        {films.length > 0 && films.map(({ id, original_title, poster_path }) => {
-          return (
-            <li className ={style.filmItem}  key={id}>
+      // <ul className ={style.filmList}>
+      //   {" "}
+      //   {films.length > 0 && films.map(({ id, original_title, poster_path }) => {
+      //     return (
+      //       <li className ={style.filmItem}  key={id}>
             
-         <NavLink to={`${this.props.match.url}/${id}`}>
-                  {original_title}
-                {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" /> */}
-              </NavLink> 
-             </li>
-          );
-        })}
-      </ul>
+      //    <NavLink to={`${this.props.match.url}/${id}`}>
+      //             {original_title}
+      //           {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" /> */}
+      //         </NavLink> 
+      //        </li>
+      //     );
+      //   })}
+      // </ul>
+      <>
+      <h1>Trending films</h1>
+      <MovieList films={films} />
+    </>
     );
   }
 }

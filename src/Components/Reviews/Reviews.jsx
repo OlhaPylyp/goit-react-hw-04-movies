@@ -6,13 +6,14 @@ class Reviews extends Component {
   state = {
     reviews: [],
   };
-  componentDidMount() {
-    console.log("Cast componentDidMount() match: ", this.props.match);
-    const { movieId } = this.props.match.params;
-    fetchReviews.fetchReviews(movieId).then((results) =>
-      this.setState({
-        reviews: results,
-      })
+  componentDidUpdate() {
+      const { movieId } = this.props.match.params;
+    fetchReviews.fetchReviews(movieId).then(
+    
+      (results) =>  console.log("Rewiews ", results)
+      // this.setState({
+      //   reviews: results,
+      // })
     );
   }
 
@@ -22,9 +23,9 @@ class Reviews extends Component {
     return (
       <>
         <ul>
-          {reviews.length>0 && reviews.map(({ content, id }) => {
+          {reviews.length>0 ? reviews.map(({ content, id }) => {
             return (<p key={id}>{content}</p>);
-          })}
+          }):<li>Ops, there are no data</li>}
         </ul>
       </>
     );

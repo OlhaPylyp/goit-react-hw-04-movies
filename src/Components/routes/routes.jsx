@@ -35,15 +35,4 @@ export const routes = [
     label: "Movie Details Page",
     component: MovieDetailsPage,
   },
-  // {
-  //   path: "/MoviesPage/Cast/:movieId",
-  //   label: "Cast",
-  //   component: Cast,
-  // },
-  //   {
-  //     path: '/Cast',
-  //     label: 'Cast',
-  //     component: Cast,
-  //     exact: true,
-  //   },
 ];
