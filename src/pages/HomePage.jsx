@@ -28,10 +28,11 @@ class HomePages extends Component {
         {films.map(({ id, original_title, poster_path }) => {
           return (
             <li key={id}>
-              {/* <Link to={`${this.props.match.url}/${id}`}>
-                {original_title}
+            
+         <Link to={`${this.props.match.url}/${id}`}>
+                  {original_title}
                 {/* <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`} alt="" /> */}
-              {/* </Link> */} 
+              </Link> 
              </li>
           );
         })}

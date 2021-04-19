@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from "axios";
-const ApiKey = "2d2272085b6a086155bacb1413ae9080";
+const ApiKey = "2333256e3c1fa5964d6335c1882125af";
 const fetchSearchFilm = async (query) =>
   await axios
     .get(
