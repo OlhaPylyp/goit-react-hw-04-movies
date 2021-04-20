@@ -1,6 +1,6 @@
 // import { Component, Suspense } from "react";
 import { lazy, Suspense } from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
+import { Route, NavLink, Switch,Redirect } from "react-router-dom";
 import styles from "./App.module.css";
 // import MainNavigation from "./Components/routes/MainNavigation";
 const HomePage = lazy(() =>
@@ -42,6 +42,7 @@ const App = () => {
           <Route exact path="/MoviesPage" component={MoviesPage} />
           <Route path="/MoviesPage/:movieId" component={MovieDetailsPage} />
           {/* <Route path="/:movieId" component={MovieDetailsPage} /> */}
+          <Redirect to="/" />
         </Switch>
       </Suspense>
       {/* <MainNavigation /> */}
