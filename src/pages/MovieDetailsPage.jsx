@@ -34,7 +34,7 @@ class MovieDetailsPage extends Component {
     if (location.state && location.state.from) {
       return history.push(location.state.from);
     }
-    history.push("/")
+    history.push("/");
   };
   render() {
     const {
@@ -45,20 +45,20 @@ class MovieDetailsPage extends Component {
       poster_path,
     } = this.state;
 
-    console.log(
-      "MovieDetPage this.props.match: ",
-      this.props.location.state.from
-    );
     return (
       <>
         <div className={style.container}>
-          <button type="button" onClick={this.handleGoBack}>
+          <button
+            type="button"
+            className={style.button}
+            onClick={this.handleGoBack}
+          >
             Back
           </button>
           <img
             className={style.img}
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            alt=""
+            alt="movie text"
           />
           <h2 className={style.genresTitle} key={id}>
             Title: <span> {original_title}</span>
