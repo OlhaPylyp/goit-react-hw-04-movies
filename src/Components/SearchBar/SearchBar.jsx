@@ -3,17 +3,17 @@ import styles from '../SearchBar/Searchbar.module.css';
 
 class SearchBar extends Component {
   state = {
-    image: '',
+    film: '',
   };
 
   handleChange = e => {
-    this.setState({ image: e.currentTarget.value });
+    this.setState({ film: e.currentTarget.value });
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.image);
-    this.setState({ image: '' });
-    // console.log(this.state.image);
+    this.props.onSubmit(this.state.film);
+    this.setState({ film: '' });
+
   };
   render() {
     return (
@@ -31,7 +31,7 @@ class SearchBar extends Component {
               autoComplete="off"
               autoFocus
               placeholder="Search films"
-              value={this.state.image}
+              value={this.state.film}
             />
           </form>
         </header>

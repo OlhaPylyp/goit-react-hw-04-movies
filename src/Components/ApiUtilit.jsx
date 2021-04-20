@@ -12,7 +12,7 @@ const fetchMovieDetails = async (movie_id) =>
     .get(
       `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${ApiKey}&language=en-US`
     )
-    .then((response) => response.data);
+    .then(({data}) => data);
 
     const fetchCast = async (movie_id) =>
   await axios

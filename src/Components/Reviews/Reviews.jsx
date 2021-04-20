@@ -1,5 +1,6 @@
 import { Component } from "react";
 import fetchReviews from "../ApiUtilit";
+import style from "../Cast/Cast.module.css"
 
 class Reviews extends Component {
   state = {
@@ -23,7 +24,7 @@ class Reviews extends Component {
             reviews.map(({ content, id, author }) => {
               return (
                 <div>
-                  <h2 key={id}> Author: {author}</h2>
+                  <li key={id} className={style.item}>  Author: {author}</li>
                   <p>{content}</p>
                 </div>
               );

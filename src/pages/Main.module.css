@@ -37,9 +37,11 @@
   color: palevioletred;
 }
 .genresTitle {
+  list-style: none;
   font-size: 30px;
   color: #3fb5a5;
   font-weight: 700;
+  margin-bottom: 10px;
 }
 .genresText{
     font-weight: 500;

@@ -19,15 +19,17 @@ class MovieDetailsPage extends Component {
     original_title: "",
     genres: [],
     vote_average: 0,
-    popularity: null,
+    poster_path:"",
     error: false,
+    location: null,
   };
   componentDidMount() {
+    this.setState({ location: this.props.location });
     const { movieId } = this.props.match.params;
     fetchMovieDetails
       .fetchMovieDetails(movieId)
       .then((film) => this.setState({ ...film }))
-      .catch((error) => this.state({ error }));
+      .catch((error) => this.state({ error}));
   }
   handleGoBack = () => {
     const { location, history } = this.props;
@@ -60,14 +62,14 @@ class MovieDetailsPage extends Component {
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt="movie text"
           />
-          <h2 className={style.genresTitle} key={id}>
+          <li className={style.genresTitle} key={id}>
             Title: <span> {original_title}</span>
-          </h2>
+          </li>
           <ul className={style.genresList}>
             Genres:{" "}
-            {genres.map(({ name }) => {
+            {genres.map(({ name, id }) => {
               return (
-                <li className={style.genresItem}>
+                <li key={id} className={style.genresItem}>
                   <span>{name},</span>
                 </li>
               );
