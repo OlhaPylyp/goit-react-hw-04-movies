@@ -1,21 +1,30 @@
-// import { renderIntoDocument } from "react-dom/test-utils";
 import { Link } from "react-router-dom";
 // import { debounce } from "debounce";
 import { Component } from "react";
-// import axios from 'axios';
 import fetchSearchFilm from "../Components/ApiUtilit";
 import SearchBar from "../Components/SearchBar";
-import style from "../pages/Main.module.css";
 import MovieList from "../Components/MovieList";
+import queryString from "query-string";
+import { withRouter } from "react-router-dom";
+
+const getSearchQuery = (props) => queryString.parse(props.location.search);
+// console.log("getSearchQuery", getSearchQuery);
 class MoviesPage extends Component {
   state = {
     films: [],
     searchFilm: "",
   };
 
+  componentDidMount() {
+    const { searchFilm } = getSearchQuery(this.props);
+    if (searchFilm) {
+      this.fetchFilm(searchFilm);
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchFilm !== this.state.searchFilm) {
-      this.fetchFilm();
+      this.fetchFilm(this.state.searchFilm);
     }
   }
   // debounceWord = debounce((searchFilm) => {
@@ -25,15 +34,7 @@ class MoviesPage extends Component {
   //     }))
   //   );
   // }, 1000);
-  fetchFilm = () => {
-    const { searchFilm } = this.state;
-
-    // this.setState({ isLoading: true });
-
-    // if ( searchFilm.length <= 2) {
-    //   this.setState({ isLoading: false });
-    //   return;
-    // }
+  fetchFilm = (searchFilm) => {
     fetchSearchFilm
       .fetchSearchFilm(searchFilm)
       .then((results) =>
@@ -44,14 +45,18 @@ class MoviesPage extends Component {
       .catch((error) => console.log(error));
   };
   addFilm = (film) => {
-    // console.log('addImage()');
+    if (film !== "") {
+      this.props.history.push({
+        pathname: this.props.location.pathname,
+        search: `searchFilm=${film}`,
+      });
+    }
     this.setState({
       searchFilm: film,
       films: [],
-      // currentPage: 1,
-      // scrollScr: false,
     });
   };
+
   render() {
     const { films } = this.state;
     return (
@@ -62,5 +67,4 @@ class MoviesPage extends Component {
     );
   }
 }
-
-export default MoviesPage;
+export default withRouter(MoviesPage);

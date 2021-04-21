@@ -1,19 +1,18 @@
-import { Component } from 'react';
-import styles from '../SearchBar/Searchbar.module.css';
+import { Component } from "react";
+import styles from "../SearchBar/Searchbar.module.css";
 
 class SearchBar extends Component {
   state = {
-    film: '',
+    film: "",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ film: e.currentTarget.value });
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.state.film);
-    this.setState({ film: '' });
-
+    this.setState({ film: "" });
   };
   render() {
     return (

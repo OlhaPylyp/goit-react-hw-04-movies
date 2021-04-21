@@ -12,17 +12,12 @@ const MovieDetailsPage = lazy(() =>
 );
 //const Cast = lazy(() => import("../../Components/Cast/Cast"));
 
-export const routes = [
+ const routes = [
   {
     path: "/",
     label: "Home Page",
     component: HomePages,
     exact: true,
-  },
-  {
-    path: "/:movieId",
-    label: "Home Page",
-    component: MovieDetailsPage,
   },
   {
     path: "/MoviesPage/",
@@ -35,4 +30,6 @@ export const routes = [
     label: "Movie Details Page",
     component: MovieDetailsPage,
   },
+  
 ];
+export default routes;

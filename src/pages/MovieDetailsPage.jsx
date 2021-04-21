@@ -2,6 +2,7 @@
 // import { Link } from "react-router-dom";
 import { Component, lazy, Suspense } from "react";
 import fetchMovieDetails from "../Components/ApiUtilit";
+import routes from "../Components/routes/routes";
 import { Link, NavLink, Route, Switch, withRouter } from "react-router-dom";
 import style from "../pages/Main.module.css";
 const Cast = lazy(() =>
@@ -19,7 +20,7 @@ class MovieDetailsPage extends Component {
     original_title: "",
     genres: [],
     vote_average: 0,
-    poster_path:"",
+    poster_path: "",
     error: false,
     location: null,
   };
@@ -29,14 +30,12 @@ class MovieDetailsPage extends Component {
     fetchMovieDetails
       .fetchMovieDetails(movieId)
       .then((film) => this.setState({ ...film }))
-      .catch((error) => this.state({ error}));
+      .catch((error) => this.state({ error }));
   }
   handleGoBack = () => {
-    const { location, history } = this.props;
-    if (location.state && location.state.from) {
-      return history.push(location.state.from);
-    }
-    history.push("/");
+    const { history } = this.props;
+    const { location } = this.state;
+    history.push(location?.state?.from || routes.HomePage);
   };
   render() {
     const {
@@ -62,14 +61,14 @@ class MovieDetailsPage extends Component {
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt="movie text"
           />
-          <li className={style.genresTitle} key={id}>
+          <h2 className={style.genresTitle} key={id}>
             Title: <span> {original_title}</span>
-          </li>
+          </h2>
           <ul className={style.genresList}>
             Genres:{" "}
             {genres.map(({ name, id }) => {
               return (
-                <li key={id} className={style.genresItem}>
+                <li className={style.genresItem} key={id}>
                   <span>{name},</span>
                 </li>
               );
@@ -83,25 +82,22 @@ class MovieDetailsPage extends Component {
           <NavLink
             className={style.NavLink}
             activeClassName={style.NavLinkActive}
-            to={`${this.props.match.url}/cast/${id}`}
+            to={`${this.props.match.url}/cast`}
           >
             <p className={style.text}>Cast</p>
           </NavLink>{" "}
           <NavLink
             className={style.NavLink}
             activeClassName={style.NavLinkActive}
-            to={`${this.props.match.url}/reviews/${id}`}
+            to={`${this.props.match.url}/reviews`}
           >
             <p>Reviews</p>
           </NavLink>{" "}
           <Suspense fallback={<p>Is loading....</p>}>
             <Switch>
+              <Route path={`${this.props.match.path}/cast`} component={Cast} />
               <Route
-                path={`${this.props.match.url}/cast/:movieId`}
-                component={Cast}
-              />
-              <Route
-                path={`${this.props.match.url}/reviews/:movieId`}
+                path={`${this.props.match.path}/reviews`}
                 component={Reviews}
               />
             </Switch>
@@ -112,4 +108,4 @@ class MovieDetailsPage extends Component {
   }
 }
 
-export default MovieDetailsPage;
+export default withRouter(MovieDetailsPage);
