@@ -13,6 +13,7 @@ class MoviesPage extends Component {
   state = {
     films: [],
     searchFilm: "",
+    error: false,
   };
 
   componentDidMount() {
@@ -42,7 +43,7 @@ class MoviesPage extends Component {
           films: [...prevState.films, ...results],
         }))
       )
-      .catch((error) => console.log(error));
+      .catch((error) => this.setState({ error: true }));
   };
   addFilm = (film) => {
     if (film !== "") {
@@ -58,11 +59,11 @@ class MoviesPage extends Component {
   };
 
   render() {
-    const { films } = this.state;
+    const { films, error } = this.state;
     return (
       <div>
         <SearchBar onSubmit={this.addFilm} />
-        <MovieList films={films} />
+     {error && <MovieList films={films} />}   
       </div>
     );
   }
