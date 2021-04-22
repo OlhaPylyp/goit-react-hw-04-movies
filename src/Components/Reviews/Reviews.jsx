@@ -30,7 +30,7 @@ class Reviews extends Component {
               );
             })
           ) : (
-            <li>Ops, there are no data</li>
+            <li >Ops, there are no data</li>
           )}
         </ul>
       </>
